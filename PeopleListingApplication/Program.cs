@@ -1,15 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PersonRepository.Interface;
 
-namespace PeopleListingApplication
+namespace DemoProj
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
+			IPersonRepository repo = RepositoryFactory.GetPersonRepository();
+			var people = repo.GetPeople();
+
+			foreach (var person in people)
+			{
+				Console.WriteLine(person.ToString());
+				Console.WriteLine("*********************************");
+
+
+			}
+
+			Console.ReadKey();
 		}
+
 	}
 }
