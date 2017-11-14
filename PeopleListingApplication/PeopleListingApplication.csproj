@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,17 +47,18 @@
     <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PersonRepository.CSV\PersonRepository.CSV.csproj">
-      <Project>{7a7a0fcd-c29d-4e63-8b7e-c16c9be7d0bf}</Project>
-      <Name>PersonRepository.CSV</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PersonRepository.Interface\PersonRepository.Interface.csproj">
       <Project>{a44d760d-b601-46c4-bb7c-3ca1d0966f28}</Project>
       <Name>PersonRepository.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)..\RepositoriesForBinFolder\*.*" "$(SolutionDir)PeopleListingApplication\bin\$(ConfigurationName)" /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

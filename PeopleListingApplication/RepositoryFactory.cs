@@ -1,5 +1,6 @@
-﻿using PersonRepository.CSV;
-using PersonRepository.Interface;
+﻿using PersonRepository.Interface;
+using System;
+using System.Configuration;
 
 namespace DemoProj
 {
@@ -8,7 +9,11 @@ namespace DemoProj
 
 		public static IPersonRepository GetPersonRepository()
 		{
-			return new CSVRepository();
+			string typeName = ConfigurationManager.AppSettings["RepositoryType"];
+			Type repoType = Type.GetType(typeName);
+			object repoInstance = Activator.CreateInstance(repoType);
+			IPersonRepository repo = repoInstance as IPersonRepository;
+			return repo;
 		}
 	}
 }

@@ -6,11 +6,11 @@ using System.IO;
 
 namespace PersonRepository.CSV
 {
-	public class CSVRepository : IPersonRepository
+	public class CSVPersonRepository : IPersonRepository
 	{
 		string path;
 
-		public CSVRepository()
+		public CSVPersonRepository()
 		{
 			var filename = ConfigurationManager.AppSettings["CSVFileName"];
 			path = AppDomain.CurrentDomain.BaseDirectory + filename;
